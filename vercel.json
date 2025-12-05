@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "name": "watermark-remover-ai",
+  "public": true,
+  "builds": [
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/process.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/process.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "silent": true
+  },
+  "regions": ["sin1"],
+  "features": {
+    "webAnalytics": {
+      "enabled": true
+    }
+  }
+}
